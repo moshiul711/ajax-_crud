@@ -23,13 +23,17 @@
                 method: "post",
                 data: { name:name, price:price },
                 success: function (res) {
-
+                    if (res.status == 'Product Add Successfully')
+                    {
+                        $('#addModal').modal('hide');
+                        $('#addProductForm')[0].reset();
+                    }
                 },
                 error: function (err) {
                     let error = err.responseJSON;
                     $.each(error.errors, function (key,value) {
                         $('.errorMsg').append('<span class="text-danger">'+ value+'</span>'+'<br>');
-                    })
+                    });
                 },
             });
         });

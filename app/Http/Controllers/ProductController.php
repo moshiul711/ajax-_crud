@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,5 +25,7 @@ class ProductController extends Controller
                 'price.required'=>'Price is required'
             ]
         );
+        $product = Product::storeProduct($request);
+        return response(['status'=>'Product Add Successfully']);
     }
 }
