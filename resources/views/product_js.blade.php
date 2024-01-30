@@ -12,6 +12,26 @@
 
 <script>
     $(document).ready(function () {
-        // alert();
+        $(document).on('click','.add_product_btn', function (e) {
+            e.preventDefault();
+
+            let name = $('#name').val();
+            let price = $('#price').val();
+
+            $.ajax({
+                url : "{{ route('add.product') }}",
+                method: "post",
+                data: { name:name, price:price },
+                success: function (res) {
+
+                },
+                error: function (err) {
+                    let error = err.responseJSON;
+                    $.each(error.errors, function (key,value) {
+                        $('.errorMsg').append('<span class="text-danger">'+ value+'</span>'+'<br>');
+                    })
+                },
+            });
+        });
     });
 </script>
